@@ -1,0 +1,12 @@
+# depslib dependency file v1.0
+1728834062 source:d:\coding\c++\tp5\tp5\list.cpp
+	<iostream>
+	"list.h"
+
+1728834081 d:\coding\c++\tp5\tp5\list.h
+	<iostream>
+
+1728834482 source:d:\coding\c++\tp5\tp5\main.cpp
+	<iostream>
+	"list.h"
+
