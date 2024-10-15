@@ -1,0 +1,8 @@
+# depslib dependency file v1.0
+1728214172 source:d:\coding\c++\tp4\main.cpp
+	"list.h"
+	<iostream>
+
+1728214545 d:\coding\c++\tp4\list.h
+	<iostream>
+
