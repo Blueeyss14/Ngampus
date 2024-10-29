@@ -1,0 +1,12 @@
+# depslib dependency file v1.0
+1730036124 source:d:\coding\c++\tpmod7\stack.cpp
+	<iostream>
+	"stack.h"
+
+1730030585 d:\coding\c++\tpmod7\stack.h
+	<iostream>
+
+1730036074 source:d:\coding\c++\tpmod7\main.cpp
+	<iostream>
+	"stack.h"
+
