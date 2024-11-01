@@ -62,4 +62,5 @@ Kamus:
 Algoritma:
     if (first(L) != NULL) then
         if (next(first(L)) != NULL) then
-        
+            P <- first(L) 
+            first(L) <-
