@@ -63,7 +63,7 @@ procedure delete_first(in/out L: List, out P: address)
 Kamus:
 Algoritma:
     if (first(L) != NULL) then
-        if (next(first(L)) == NULL) then
+        if (next(first(L)) != NULL) then
             P <- first(L) <- next(P)
             next(P) <- NULL
         else

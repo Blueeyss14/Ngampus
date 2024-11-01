@@ -1,0 +1,65 @@
+type infotype   : integer
+type address    : pointer to elmlist
+type elmlist    : < info    : infotype
+                    next    : address >
+type List       : < first   : address >
+
+procedure createList(in/out L: List)
+Kamus:
+Algoritma:
+    first(L) <- NULL
+endprocedure
+
+function create_Elmlist(data: infotype) -> address
+Kamus:
+    P : address
+Algoritma:
+    P <- new elmlist
+    info(P) <- data
+    next(P) <- NULL
+    return P
+endfuntion
+
+procedure insert_first(in/out L: List, in P: address)
+Kamus:
+Algoritma:
+    if (first(L) == NULL) then
+        first(L) <- P
+    else
+        next(P) <- first(L)
+        first(L) <- P
+    endif
+endprocedure
+
+procedure insert_last(in/out L: List, in P: address)
+Kamus:
+    x: address
+Algoritma:
+    if (first(L) == NULL) then
+        first(L) <- P
+    else
+        x <- first(L)
+        while (next(x) != NULL) do
+            x <- next(x)
+        endwhile
+        next(x) <- P
+    endif
+endprocedure
+
+procedure insert_after(in/out L: List, in Prec, P: address)
+Kamus:
+Algoritma:
+    if (next(Prec) != NULL) then
+        next(P) <- next(Prec)
+        next(Prec) <- P
+    else
+        next(Prec) <- P
+    endif
+endprocedure
+
+procedure delete_first(in/out L: List, out P: address)
+Kamus:
+Algoritma:
+    if (first(L) != NULL) then
+        if (next(first(L)) != NULL) then
+        
