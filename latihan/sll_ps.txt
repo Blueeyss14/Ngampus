@@ -33,12 +33,12 @@ endprocedure
 
 procedure insert_last(in/out L: List, in P: address)
 Kamus:
-    x: address
+    x : address
 Algoritma:
     if (first(L) == NULL) then
         first(L) <- P
     else
-        x <- first(L)
+        x: first(L)
         while (next(x) != NULL) do
             x <- next(x)
         endwhile
@@ -46,21 +46,31 @@ Algoritma:
     endif
 endprocedure
 
-procedure insert_after(in/out L: List, in Prec, P: address)
+procedure insert_after(in/out L: List, in Prec ,P: address)
 Kamus:
+    x: address
 Algoritma:
     if (next(Prec) != NULL) then
         next(P) <- next(Prec)
         next(Prec) <- P
     else
-        next(Prec) <- P
+        first(L) <- NULL
     endif
 endprocedure
 
-procedure delete_first(in/out L: List, out P: address)
+procedure delete_first(in/out L: List, out P)
 Kamus:
 Algoritma:
-    if (first(L) != NULL) then
+    if(first(L) != NULL) then
         if (next(first(L)) != NULL) then
-            P <- first(L) 
-            first(L) <-
+            P <- first(L)
+            first(L) <- next(P)
+            next(P) <- NULL
+        else
+            P <- first(L)
+            first(L) <- NULL
+        endif
+        P <- NULL
+    endif
+endprocedure
+            
