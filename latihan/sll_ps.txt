@@ -73,4 +73,3 @@ Algoritma:
         P <- NULL
     endif
 endprocedure
-            
