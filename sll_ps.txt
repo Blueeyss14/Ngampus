@@ -83,7 +83,7 @@ Algoritma:
         if (next(first(L)) != NULL) then
             x <- first(L)
 
-            while (next(next(c)) != NULL) do
+            while (next(next(x)) != NULL) do
                 x <- next(X)
             endwhile
             P <- next(x)
@@ -105,6 +105,8 @@ Algoritma:
     next(P) <- NULL
 endprocedure
 
+
+
 procedure show(in L: List)
 Kamus:
     P: address
@@ -117,4 +119,19 @@ Algoritma:
     else
         output("List Kosong")
     endif
+endprocedure
+
+function find(in L: List, data: infotype) -> address
+Kamus:
+    P: address
+Algoritma:
+    P <- first(L)
+    while (P != NULL) do
+        if (info(P) == data) then
+            return P
+        endif
+        p <- next(P)
+    endwhile
+
+    return P
 endprocedure

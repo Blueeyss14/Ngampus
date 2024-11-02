@@ -22,7 +22,6 @@ endfuntion
 
 procedure insert_first(in/out L: List, in P: address)
 Kamus:
-Algoritma:
     if (first(L) == NULL) then
         first(L) <- P
     else
@@ -33,35 +32,34 @@ endprocedure
 
 procedure insert_last(in/out L: List, in P: address)
 Kamus:
-    x : address
+    x: address
 Algoritma:
     if (first(L) == NULL) then
         first(L) <- P
     else
-        x: first(L)
+        x <- first(L)
         while (next(x) != NULL) do
             x <- next(x)
         endwhile
-        next(x) <- P
+        next(x) <- first(L)
+        first(L) <- P    
     endif
 endprocedure
 
-procedure insert_after(in/out L: List, in Prec ,P: address)
+procedure insert_after(in/out L: List, in Prec, P: address)
 Kamus:
-    x: address
 Algoritma:
     if (next(Prec) != NULL) then
         next(P) <- next(Prec)
         next(Prec) <- P
     else
-        first(L) <- NULL
+        next(Prec) <- P
     endif
 endprocedure
 
-procedure delete_first(in/out L: List, out P)
+procedure delete_first(in/out L: List, out P: address)
 Kamus:
-Algoritma:
-    if(first(L) != NULL) then
+    if (first(L) != NULL)
         if (next(first(L)) != NULL) then
             P <- first(L)
             first(L) <- next(P)
@@ -70,6 +68,52 @@ Algoritma:
             P <- first(L)
             first(L) <- NULL
         endif
+    else
         P <- NULL
+    endif
+endprocedure
+
+procedure delete_last(in/out L: List, out P: address)
+Kamus:
+    x: address
+Algoritma:
+    if (first(L) != NULL) then
+        if (next(first(L)) != NULL) then
+            x <- first(L)
+
+            while (next(x) != NULL) do
+                x <- next(x)
+            endwhile
+            P <- next(x)
+            next(x) <- NULL
+        else
+            P <- first(L)
+            first(L) <- NULL
+        endif
+    else
+        P <- NULL
+    endif
+endprocedure
+
+procedure delete_after(in/out L: List, out Prec, P: address)
+Kamus:
+Algoritma:
+    P <- next(Prec)
+    next(Prec) <- next(P)
+    next(P) <- NULL
+endprocedure
+
+procedure show(in L: List)
+Kamus:
+    P: address
+Algoritma:
+    if (first(L) != NULL)
+        P <- first(L)
+
+        while (P != NULL) do
+            output(info(P))
+        endwhile
+    else
+        output("List Kosong")
     endif
 endprocedure
