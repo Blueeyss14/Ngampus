@@ -1,0 +1,83 @@
+type infotype   : integer
+type address    : pointer to elmlQ
+type elmlQ      : < info        : infotype
+                    next        : address >
+type queue      : < head, tail  : address >
+
+function isEmpty(in Q: queue) -> boolean
+Kamus:
+Algoritma:
+    return (Q.head == NULL)
+endfunction
+
+procedure createQueue(out Q: queue)
+Kamus:
+Algoritma:
+    Q.head <- NULL
+    Q.tail <- NULL
+endprocedure
+
+procedure createElmQueue(in X: infotype, out P: address)
+Kamus:
+Algoritma:
+    P <- new elmlQ
+    info(P) <- X
+    next(P) <- NULL
+endprocedure
+
+procedure addElmQueue(in/out Q: queue, in X: infotype)
+Kamus:
+    P: address
+Algoritma:
+    createElmQueue(X, P)
+    if isEmpty(Q) then
+        Q.head <- P
+        Q.tail <- P
+    else
+        next(Q.tail) <- P
+        Q.tail <- P
+    endif
+endprocedure
+
+procedure deleteElmQueue(in/out Q: queue, out X: infotype)
+Kamus:
+    P: address
+Algoritma:
+    info(P) <- X
+    if (isEmpty(Q)) then
+        output("Queue kosong")
+    else
+        P <- Q.head
+        Q.head <- next(P)
+        next(P) <- NULL
+    endif
+endprocedure
+
+procedure showQueue(in Q: queue)
+Kamus:
+    P: address
+Algoritma:
+    if (isEmpty(Q)) then
+        output("Queue kosong")
+    else
+        P <- Q.head
+        while (P != NULL) do
+            output(info(P))
+            P <- next(P)
+        endwhile
+    endif
+endprocedure
+
+function findQueue(in Q: queue, in X: infotype) -> address
+Kamus:
+    P: address
+Algoritma:
+    P <- Q.head
+    while (P != NULL) do
+        if (info(P) == X) then
+            return P
+        endif
+        P <- next(P)
+    endwhile
+    return NULL
+endfunction

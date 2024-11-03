@@ -1,4 +1,4 @@
-constanta IDMAX  : integer <- 15
+constanta IDMAX : integer <- 15
 type infotype   : character
 type address    : integer
 type stack      : < info    : array[1..IDMAX] of integer
