@@ -13,6 +13,7 @@ Kamus:
     P: address
 Algoritma:
     P <- new elmlist
+    info(P) <- data
     next(P) <- NULL
     prev(P) <- NULL
     return P
