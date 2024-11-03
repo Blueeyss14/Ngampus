@@ -19,6 +19,20 @@ Algoritma:
     return P
 endpfunction
 
+procedure insert_first(in/out L: List, in P: address)
+Kamus:
+    if (first(L) == NULL) then
+        first(L) <- P
+        last(L) <- P
+        next(P) <- NULL
+        prev(P) <- NULL
+    else
+        next(P) <- first(L)
+        prev(first(L)) <- P
+        first(L) <- P
+    endif
+endprocedure
+
 procedure insert_last(in/out L: List: in P: address)
 Kamus:
 Algoritma:
@@ -26,6 +40,25 @@ Algoritma:
     prev(P) <- last
     last <- P
 endprocedure
+
+
+procedure insert_after(in/out L: List, in Q: address, in P: address)
+Kamus:
+    if (Q == NULL) then
+        output("Elemen Q tidak valid")
+    else
+        next(P) <- next(Q)
+        prev(P) <- Q
+        
+        if (next(Q) != NULL) then
+            prev(next(Q)) <- P
+        else
+            last(L) <- P
+        endif
+        next(Q) <- P
+    endif
+endprocedure
+
 
 function findData(in/out L: List, data1: string) -> address
 Kamus:
