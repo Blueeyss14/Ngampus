@@ -1,0 +1,58 @@
+constanta IDMAX  : integer <- 15
+type infotype   : character
+type address    : integer
+type stack      : < info    : array[1..IDMAX] of integer
+                    Top     : integer >
+
+procedure createStack(S: stack)
+Kamus:
+Algoritma:
+    Top(S) <- 0;
+endprocedure
+
+function isEmpty(S: stack) -> boolean
+Kamus:
+Algoritma:
+    if (Top(S) == 0) then
+        return true;
+    else
+        return false;
+    endif
+endfunction
+
+function isFull(S: stack) -> boolean
+Kamus:
+Algoritma:
+    if (Top(s) == IDMAX) then
+        return true
+    else
+        return false
+    endif
+
+procedure push(S: stack, x: infotype)
+Kamus:
+Algoritma:
+    if (isFull(S) == false) then
+        Top(S) <- Top(S) + 1
+        info(S)[Top(S)] <- x
+    endif
+endprocedure
+
+function pop(S: stack) -> infotype
+Kamus:
+    x: infotype
+Algoritma:
+    x <- info(S)[info(S)]
+    Top(S) <- Top(S) - 1
+    return x
+endprocedure
+
+procedure printInfo(S: stack)
+Kamus:
+    i: integer
+Algoritma:
+    for (i <- Top(A) downTo 0) do
+        output(info(S)[i])
+    endfor
+endprocedure
+

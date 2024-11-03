@@ -39,4 +39,54 @@ Algoritma:
     endwhile
 
     return P
-endfuntion
+endfunction
+
+procedure delete_first(in/out L: List)
+Kamus:
+    P: address
+Algoritma:
+    P <- first(L)
+    first(L) <- NULL
+    prev(first(L)) <- NULL
+endprocedure
+
+procedure delete_last(L: List)
+Kamus:
+    P: address
+Algoritma:
+    P <- last(L)
+    last(L) <- prev(P)
+    next(last(L)) <- NULL
+    prev(P) <- NULL
+endprocedure
+
+procedure delete_after(in/out, Q: address)
+Kamus:
+    P: address
+Algoritma:
+    P <- next(Q)
+    next(Q) <- next(P)
+    prev(next(p)) <- P
+    next(P) <- NULL
+    prev(P) <- NULL
+
+endprocedure 
+
+procedure deleteData(in/out L: List, data1: string)
+Kamus:
+    P: address
+Algoritma:
+    P <- findData(L, data1)
+    if (P != NULL) then
+        if (P == first(L) AND first(L) == last(L)) then
+            first(L) <- NULL
+            last(L) <- NULL
+        else if (P == first(L) AND first(L) != last(L)) then
+            delete_first(L)
+        else
+            delete_last(L)
+        endif
+    else
+        output("List Kosong")
+    endif
+endprocedure

@@ -135,3 +135,14 @@ Algoritma:
 
     return P
 endprocedure
+
+procedure update(in/out L: List, data, newData: infotype)
+Kamus:
+    function find(in L: List, data: infotype) -> address
+    P: address
+Algoritma:
+    P <- find(L, data)
+    if (P != NULL) then
+        info(P) <- newData
+    endif
+endprocedure

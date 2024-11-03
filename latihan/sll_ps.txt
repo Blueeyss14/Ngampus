@@ -18,10 +18,11 @@ Algoritma:
     info(P) <- data
     next(P) <- NULL
     return P
-endfuntion
+endfunction
 
 procedure insert_first(in/out L: List, in P: address)
 Kamus:
+Algoritma:
     if (first(L) == NULL) then
         first(L) <- P
     else
@@ -41,8 +42,7 @@ Algoritma:
         while (next(x) != NULL) do
             x <- next(x)
         endwhile
-        next(x) <- first(L)
-        first(L) <- P    
+        next(x) <- P
     endif
 endprocedure
 
@@ -59,14 +59,14 @@ endprocedure
 
 procedure delete_first(in/out L: List, out P: address)
 Kamus:
-    if (first(L) != NULL)
+Algoritma:
+    if (first(L) != NULL) then
         if (next(first(L)) != NULL) then
+            P <- first(L)
+        else
             P <- first(L)
             first(L) <- next(P)
             next(P) <- NULL
-        else
-            P <- first(L)
-            first(L) <- NULL
         endif
     else
         P <- NULL
@@ -81,7 +81,7 @@ Algoritma:
         if (next(first(L)) != NULL) then
             x <- first(L)
 
-            while (next(x) != NULL) do
+            while (next(next(x)) != NULL) do
                 x <- next(x)
             endwhile
             P <- next(x)
@@ -101,13 +101,14 @@ Algoritma:
     P <- next(Prec)
     next(Prec) <- next(P)
     next(P) <- NULL
+
 endprocedure
 
 procedure show(in L: List)
 Kamus:
     P: address
 Algoritma:
-    if (first(L) != NULL)
+    if (first(L) != NULL) then
         P <- first(L)
 
         while (P != NULL) do
@@ -115,5 +116,18 @@ Algoritma:
         endwhile
     else
         output("List Kosong")
-    endif
+endprocedure
+
+function findData(in/output L: List, data: infotype) -> address
+Kamus:
+    P: address
+Algoritma:
+    P <- first(L)
+    while (P != NULL) do
+        if (info(P) == data) then
+            return P
+        endif
+        P <- next(P)
+    endwhile
+    return P
 endprocedure
