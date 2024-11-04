@@ -64,13 +64,14 @@ Kamus:
 Algoritma:
     if (first(L) != NULL) then
         if (next(first(L)) != NULL) then
-            P <- first(L) 
+            P <- first(L)
             first(L) <- next(P)
             next(P) <- NULL
         else
             P <- first(L)
             first(L) <- NULL
         endif
+    else
         P <- NULL
     endif
 endprocedure

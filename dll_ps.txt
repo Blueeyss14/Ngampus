@@ -21,6 +21,7 @@ endpfunction
 
 procedure insert_first(in/out L: List, in P: address)
 Kamus:
+Algoritma:
     if (first(L) == NULL) then
         first(L) <- P
         last(L) <- P
@@ -48,14 +49,13 @@ Algoritma:
 endprocedure
 
 
-procedure insert_after(in/out L: List, in Q: address, in P: address)
+procedure insert_after(in/out L: List, in Q, P: address)
 Kamus:
-    if (Q == NULL) then
-        output("Elemen Q tidak valid")
-    else
+Algoritma:
+    if (Q != NULL) then
         next(P) <- next(Q)
         prev(P) <- Q
-        
+
         if (next(Q) != NULL) then
             prev(next(Q)) <- P
         else
@@ -100,7 +100,7 @@ Algoritma:
     prev(P) <- NULL
 endprocedure
 
-procedure delete_after(in/out, Q: address)
+procedure delete_after(in/out Q: address)
 Kamus:
     P: address
 Algoritma:

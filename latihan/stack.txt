@@ -1,40 +1,40 @@
 constanta IDMAX : integer <- 15
 type infotype   : character
-type address    : integer
-type stack      : < info    : array[1..IDMAX] of integer
+type stack      : < info    : array[1..IDMAX] of integer 
                     Top     : integer >
 
 procedure createStack(S: stack)
 Kamus:
 Algoritma:
-    Top(S) <- 0;
+    Top(S) <- 0
 endprocedure
 
 function isEmpty(S: stack) -> boolean
 Kamus:
 Algoritma:
     if (Top(S) == 0) then
-        return true;
+        return true
     else
-        return false;
+        return false
     endif
 endfunction
 
 function isFull(S: stack) -> boolean
 Kamus:
 Algoritma:
-    if (Top(s) == IDMAX) then
+    if (Top(S) == IDMAX) then
         return true
     else
         return false
     endif
+endfunction
 
-procedure push(S: stack, x: infotype)
+procedure push(S: stack, X infotype)
 Kamus:
 Algoritma:
     if (isFull(S) == false) then
         Top(S) <- Top(S) + 1
-        info(S)[Top(S)] <- x
+        info(S)[Top(S)] <- X
     endif
 endprocedure
 
@@ -42,17 +42,16 @@ function pop(S: stack) -> infotype
 Kamus:
     x: infotype
 Algoritma:
-    x <- info(S)[info(S)]
+    x <- info(S)[Top(S)]
     Top(S) <- Top(S) - 1
     return x
-endprocedure
+endpfunction
 
 procedure printInfo(S: stack)
 Kamus:
     i: integer
 Algoritma:
-    for (i <- Top(A) downTo 1) do
+    for (i <- Top(S) downTo 1) do
         output(info(S)[i])
-    endfor
+    endif
 endprocedure
-

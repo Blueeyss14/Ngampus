@@ -1,10 +1,10 @@
 type infotype   : integer
 type address    : pointer to elmlist
-type elmlist    : < info    : infotype 
+type elmlist    : < info    : infotype
                     next    : address >
 type List       : < first   : address >
 
-procedure createList(in/out L: List)
+procedure createList(in L: List)
 Kamus:
 Algoritma:
     first(L) <- NULL
@@ -13,10 +13,10 @@ endprocedure
 function create_Elmlist(data: infotype) -> address
 Kamus:
     P: address
-Algoritma
-    P <- new elmlist
-    next(P) <- data
-    info(P) <- NULL
+Algoritma:
+    P: new elmlist
+    info(P) <- data
+    next(P) <- NULL
     return P
 endfunction
 
@@ -42,7 +42,8 @@ Algoritma:
         while (next(x) != NULL) do
             x <- next(x)
         endwhile
-        next(x) <- first(L)
+        next(x) <- P
+    endif
 endprocedure
 
 procedure insert_after(in/out L: List, in Prec, P: address)
@@ -58,7 +59,6 @@ endprocedure
 
 procedure delete_first(in/out L: List, out P: address)
 Kamus:
-Algoritma:
     if (first(L) != NULL) then
         if (next(first(L)) != NULL) then
             P <- first(L)
@@ -81,7 +81,7 @@ Algoritma:
         if (next(first(L)) != NULL) then
             x <- first(L)
 
-            while (next(next(x)) !- NULL) do
+            while (next(next(x)) != NULL) do
                 x <- next(x)
             endwhile
             P <- next(x)
@@ -92,54 +92,5 @@ Algoritma:
         endif
     else
         P <- NULL
-    endif
-endprocedure
-
-procedure delete_after(in/out L: List, out Prec, P: address)
-Kamus:
-Algoritma:
-    P <- next(Prec)
-    next(Prec) <- next(P)
-    next(P) <- NULL
-endprocedure
-
-procedure show(in L: List)
-Kamus:
-    P: address
-Algoritma:
-    if (first(L) != NULL) then
-        P <- first(L)
-
-        while (P != NULL) do
-            output(info(P))
-        endwhile
-    else
-        output("List kosong")
-    endif
-endprocedure
-
-function find(in/out L: List, data: infotype) -> address
-Kamus:
-    P: address
-Algoritma:
-    P <- first(L)
-    while (P != NULL) do
-        if (info(P) == data) then
-            return P
-        endif
-        P <- next(P)
-    endwhile
-    return P
-
-endfunction
-
-procedure update(in/out L: List, data, newData : infotype)
-Kamus:
-    function find(in/out L: List, data: infotype) -> address
-    P: address
-Algoritma:
-    P <- find(L, data)
-    if (P != NULL) then
-        info(P) <- newData
     endif
 endprocedure

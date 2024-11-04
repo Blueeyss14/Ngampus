@@ -7,18 +7,82 @@ type elmlist    : < info    : infotype
 type List       : < first   : address 
                     last    : address >
 
-function create_Elmlist(L: List) -> address
+function create_Elmlist(data: infotype) -> address
 Kamus:
     P: address
 Algoritma:
-    first(L) <- P
+    P <- new elmlist
+    info(P) <- data 
     next(P) <- NULL
     prev(P) <- NULL
     return P
-endprocedure
+endfunction
 
 procedure insert_first(in/out L: List, in P: address)
 Kamus:
 Algoritma:
     if (first(L) == NULL) then
-    
+        first(L) <- P
+        last(L) <- P
+        next(L) <- NULL
+        last(L) <- NULL
+    endif
+        next(P) <- first(L)
+        prev(first(L)) <- P
+        first(L) <- P
+    endif
+procedure insert_last(in/out L: List, in P: address)
+Kamus:
+Algoritma:
+    if (first(L) == NULL) then
+        first(L) <- P
+        last(L) <- P
+        next(P) <- NULL
+        last(L) <- NULL
+    else
+        last(L) <- first(L)
+        prev(P) <- last
+        last <- P
+    endif
+
+procedure insert_after(in/out L: List, in Q, P: address)
+Kamus:
+Algoritma:
+    if (Q != NULL) then
+        next(P) <- next(Q)
+        prev(P) <- Q
+
+        if (next(Q) != NULL) then
+            prev(next(Q)) <- P
+        else
+            last(L) <- P
+        endif
+        next(Q) <- P
+    endif
+endprocedure
+
+procedure delete_first(in/out L: List, in P: address)
+Kamus:
+Algoritma:
+    P <- first(L)
+    first(L) <- NULL
+    prev(first(L)) <- NULL
+endprocedure
+
+procedure delete_first(in/out L: List, in P: address)
+Kamus:
+Algoritma:
+    P <- last(L)
+    next(last(L)) <- NULL
+    prev(P) <- NULL
+endprocedure
+
+procedure delete_after(in/out Q: address, in P: address)
+Kamus:
+Algoritma:
+    P <- next(Q)
+    next(Q) <- next(P)
+    prev(next(P)) <- NULL
+    next(P) <- NULL
+    prev(P) <- NULL
+endprocedure
