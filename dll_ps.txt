@@ -36,9 +36,15 @@ endprocedure
 procedure insert_last(in/out L: List: in P: address)
 Kamus:
 Algoritma:
-    next(last) <- p
-    prev(P) <- last
-    last <- P
+    if (first(L) == NULL) then
+        first(L) <- P
+        last(L) <- P
+        next(P) <- NULL
+        prev(P) <- NULL
+    else
+        next(last) <- p
+        prev(P) <- last
+        last <- P
 endprocedure
 
 
