@@ -42,7 +42,7 @@ function pop(S: stack) -> infotype
 Kamus:
     x: infotype
 Algoritma:
-    x <- info(S)[info(S)]
+    x <- info(S)[Top(S)]
     Top(S) <- Top(S) - 1
     return x
 endprocedure
@@ -51,7 +51,7 @@ procedure printInfo(S: stack)
 Kamus:
     i: integer
 Algoritma:
-    for (i <- Top(A) downTo 1) do
+    for (i <- Top(S) downTo 1) do
         output(info(S)[i])
     endfor
 endprocedure

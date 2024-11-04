@@ -1,10 +1,10 @@
-type Data       : < data1, data2 : string>
+type Data       : <data1, data2 : integer>
 type infotype   : Data
 type address    : pointer to elmlist
 type elmlist    : < info    : infotype 
-                    next    : address
+                    next    : address 
                     prev    : address >
-type List       : < first   : address 
+type List       : < first,  : address 
                     last    : address >
 
 function create_Elmlist(data: infotype) -> address
@@ -12,9 +12,9 @@ Kamus:
     P: address
 Algoritma:
     P <- new elmlist
-    info(P) <- data 
+    info(P) <- data
     next(P) <- NULL
-    prev(P) <- NULL
+    prev(P) <- NULLS
     return P
 endfunction
 
@@ -24,28 +24,31 @@ Algoritma:
     if (first(L) == NULL) then
         first(L) <- P
         last(L) <- P
-        next(L) <- NULL
-        last(L) <- NULL
-    endif
+        next(P) <- NULL
+        prev(P) <- NULL
+    else
         next(P) <- first(L)
         prev(first(L)) <- P
         first(L) <- P
     endif
+endprocedure
+
 procedure insert_last(in/out L: List, in P: address)
-Kamus:
+Kamus
 Algoritma:
     if (first(L) == NULL) then
         first(L) <- P
         last(L) <- P
         next(P) <- NULL
-        last(L) <- NULL
+        prev(P) <- NULL
     else
-        last(L) <- first(L)
+        next(last(L)) <- P
         prev(P) <- last
         last <- P
     endif
+endprocedure
 
-procedure insert_after(in/out L: List, in Q, P: address)
+insert insert_after(in/out L: List, in Q, P: address)
 Kamus:
 Algoritma:
     if (Q != NULL) then
@@ -57,6 +60,7 @@ Algoritma:
         else
             last(L) <- P
         endif
+    else
         next(Q) <- P
     endif
 endprocedure
@@ -67,22 +71,25 @@ Algoritma:
     P <- first(L)
     first(L) <- NULL
     prev(first(L)) <- NULL
+
 endprocedure
 
-procedure delete_first(in/out L: List, in P: address)
+procedure delete_last(in/out L: List, in P: address)
 Kamus:
 Algoritma:
     P <- last(L)
+    last(L) <- prev(P)
     next(last(L)) <- NULL
-    prev(P) <- NULL
+    prev(P) <- NULL 
 endprocedure
 
-procedure delete_after(in/out Q: address, in P: address)
+procedure delete_after(in/out Q: address)
 Kamus:
+    P: address
 Algoritma:
     P <- next(Q)
     next(Q) <- next(P)
-    prev(next(P)) <- NULL
     next(P) <- NULL
     prev(P) <- NULL
 endprocedure
+

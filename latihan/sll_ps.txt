@@ -59,6 +59,7 @@ endprocedure
 
 procedure delete_first(in/out L: List, out P: address)
 Kamus:
+Algoritma:
     if (first(L) != NULL) then
         if (next(first(L)) != NULL) then
             P <- first(L)
@@ -92,5 +93,47 @@ Algoritma:
         endif
     else
         P <- NULL
+    endif
+endprocedure
+
+procedure delete_after(in/out L: List, out Prec, P: address)
+Kamus:
+Algoritma:
+    P <- next(prec)
+    next(prec) <- next(P)
+    next(P) <- NULL
+procedure show(in L: List)
+Kamus:
+    P: address
+Algoritma:
+    P <- first(L)
+    while(P != NULL) do
+        if (info(P) == data) then
+            output(info(P))
+        endif
+endprocedure
+
+function find(in L: List, data: infotype) -> address
+Kamus:
+    P: address
+Algoritma:
+    P <- first(L)
+    while (P != NULL) do
+        if (info(P) ==  data) then
+            return P
+        endif
+        P <- next(P)
+    endwhile
+    return P
+endprocedure
+
+procedure updateData(L: List, data, newData)
+Kamus:
+    function find(in L: List, data: infotype) -> address
+    P: address
+Algoritma:
+    P <- find(L, data)
+    if (P != NULL) then
+        info(P) <- newData
     endif
 endprocedure

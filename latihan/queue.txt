@@ -17,18 +17,18 @@ Algoritma:
     Q.tail <- NULL
 endprocedure
 
-procedure create_ElmQ(in X: infotype, out P: address)
+procedure create_ElmQ(in X: infotype, P: address)
 Kamus:
 Algoritma:
-    P <- new elmQ
+    P <- new elmlQ
     info(P) <- X
     next(P) <- NULL
 endprocedure
 
-procedure addElmQ(in/out Q: queue, in X: infotype)
+procedure addElmQueue(in/out Q: queue, in X: infotype)
 Kamus:
     P: address
-Algoritma
+Algoritma:
     create_ElmQ(X, P)
     if (isEmpty(Q)) then
         Q.head <- P
@@ -37,24 +37,18 @@ Algoritma
         next(Q.tail) <- P
         Q.tail <- P
     endif
-endprocedure 
+endprocedure
 
-procedure deleteElmQ(in/out Q: queue, out X: infotype)
+procedure deleteElmQ(in/out Q: queue, in X: infotype)
 Kamus:
     P: address
 Algoritma:
-    info(Q) <- X
+    info(P) <- X
     if (isEmpty(Q)) then
-        output("Queue kosong")
+        output("Queue Kosong")
     else
         P <- Q.head
         Q.head <- next(P)
         next(P) <- NULL
     endif
 endprocedure
-
-endprocedure
-
-procedure showQueue(in: Q: queue)
-Kamus:
-Algoritma:
