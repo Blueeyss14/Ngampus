@@ -1,0 +1,23 @@
+# depslib dependency file v1.0
+1731771393 source:d:\kuliah\semester 3\struktur data\praktikum\modul tp 9\flight.cpp
+	<iostream>
+	"flight.h"
+	"flight.h"
+
+1731771409 d:\kuliah\semester 3\struktur data\praktikum\modul tp 9\flight.h
+
+1731771757 source:d:\kuliah\semester 3\struktur data\praktikum\modul tp 9\main.cpp
+	<iostream>
+	"flight.h"
+
+1731864639 source:d:\coding\c++\modul tp 10\flight.cpp
+	<iostream>
+	"flight.h"
+	"flight.h"
+
+1731864705 d:\coding\c++\modul tp 10\flight.h
+
+1731864550 source:d:\coding\c++\modul tp 10\main.cpp
+	<iostream>
+	"flight.h"
+
