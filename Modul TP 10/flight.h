@@ -1,40 +1,40 @@
-#ifndef FLIGHT_H_INCLUDED
-#define FLIGHT_H_INCLUDED
-#define info(P) P->info
-#define next(P) P->next
-#define first(L) L.first
-//#include <string>
+#ifndef FLIGHT_H
+#define FLIGHT_H
 
-using namespace std;
+#include <string>
 
-struct jadwalPenerbangan {
-    string kode;
-    string jenis;
-    string tanggal;
-    string waktu;
-    string asal;
-    string tujuan;
-    int kapasitas;
+#define info(P) (P)->info
+#define first(L) ((L).first)
+#define next(P) (P)->next
+
+struct infotype {
+    std::string kode;
+    std::string jenis;
+    std::string tanggal;
+    std::string waktu;
+    std::string asal;
+    std::string tujuan;
 };
 
-typedef struct elemenJadwal *adr_jadwalP;
-
-typedef jadwalPenerbangan infotype;
-
-struct elemenJadwal {
+struct ElemenJadwal {
     infotype info;
-    adr_jadwalP next;
+    ElemenJadwal* next;
 };
+
+typedef ElemenJadwal* adr_jadwalP;
 
 struct ListJadwal {
     adr_jadwalP first;
 };
 
+// Deklarasi fungsi-fungsi
 void createListJadwal_103032300084(ListJadwal &L);
-adr_jadwalP createElemenJadwal_103032300084(infotype X);
+adr_jadwalP createElemenJadwal_103032300084(infotype jadwal);
 void InsertLastJ_103032300084(ListJadwal &L, adr_jadwalP P);
-void ShowJadwal_103032300084(ListJadwal L);
 void deleteFirst_103032300084(ListJadwal &L, adr_jadwalP &P);
-bool SearchJ_103032300084(ListJadwal L, string dari, string ke, string tanggal);
+void ShowJadwal_103032300084(ListJadwal L);
+bool SearchJ_103032300084(ListJadwal L, std::string dari, std::string ke, std::string tanggal);
 
-#endif // FLIGHT_H_INCLUDED
+// Macro untuk mengakses info
+
+#endif

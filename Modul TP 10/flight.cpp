@@ -9,7 +9,7 @@ void createListJadwal_103032300084(ListJadwal &L){
 
 adr_jadwalP createElemenJadwal_103032300084(infotype X){
     adr_jadwalP P;
-    P = new elemenJadwal;
+    P = new ElemenJadwal;
     info(P) = X;
     next(P) = NULL;
     return P;
