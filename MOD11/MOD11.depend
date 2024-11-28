@@ -1,0 +1,12 @@
+# depslib dependency file v1.0
+1732465538 source:d:\coding\c++\mod11\graf.cpp
+	<iostream>
+	"graf.h"
+
+1732466853 d:\coding\c++\mod11\graf.h
+	<iostream>
+
+1732465536 source:d:\coding\c++\mod11\main.cpp
+	<iostream>
+	"graf.h"
+
