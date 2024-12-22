@@ -1,0 +1,8 @@
+# depslib dependency file v1.0
+1734857568 source:d:\coding\c++\tp15\tree.cpp
+	<iostream>
+	"Tree.h"
+
+1734857594 d:\coding\c++\tp15\tree.h
+	<iostream>
+
