@@ -1,0 +1,11 @@
+# depslib dependency file v1.0
+1735034092 source:d:\coding\c++\oniline mod 15\mod 15\main.cpp
+	<iostream>
+	"tree.h"
+
+1735033151 d:\coding\c++\oniline mod 15\mod 15\tree.h
+	<iostream>
+
+1735033791 source:d:\coding\c++\oniline mod 15\mod 15\tree.cpp
+	"tree.h"
+
