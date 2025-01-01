@@ -1,0 +1,40 @@
+type pegawai    : < ID     :integer
+                    nama   : string
+                    umur   : integer >
+
+type Node       : < info    : pegawai
+                    left    : adrNode
+                    right   : adrNode >
+
+type adrNode    : pointer to Node
+type tree       : <root     : adrNode>
+
+
+//iterative
+function findNodeLeft(in T: tree) -> adrNode
+Kamus:
+    p: adrNode
+
+Algoritma:
+    p <- root(T)
+
+    while(left(P)!=NULL) do
+        p <- left(p)
+    endwhile
+    return p
+
+endfunction
+
+//recursive
+function findNodeLeft(in T: tree) -> adrNode
+Kamus:
+
+Algoritma:
+    if (left(T) != NULL) then
+        return findNodeLeft(left(T))
+    else
+        return T
+    endif
+
+endfunction
+
