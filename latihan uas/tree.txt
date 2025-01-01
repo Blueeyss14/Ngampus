@@ -38,3 +38,127 @@ Algoritma:
 
 endfunction
 
+//iterative
+procedure insertPegawai(in T: Tree, data: pegawai)
+Kamus:
+dataBaru    : adrNode
+p           : adrNode
+
+Algoritma:
+    dataBaru <- createNodeTree(data)
+    p <- T.root
+
+    if(T.root == NULL) then
+        T.root <- dataBaru
+    else
+        while(p!=NULL) do
+            if (info(p).ID >= info(dataBaru).ID) then
+                if (left(p)!=NULL) then
+                    p <- left(p)
+                else
+                    left(p) <- dataBaru
+                    p <- NULL
+                endif
+            else
+                if (right(p) != NULL) then
+                    p <- right(p)
+                else
+                    right(p) <- dataBaru
+                    p <- NULL
+                endif
+            endif
+        endwhile
+    endif   
+endprocedure                  
+
+//recursive
+procedure insertPegawai(in root: Tree, data: pegawai)
+Kamus:
+dataBaru : adrNode
+
+Algoritma:
+    if (root == NULL) then
+        dataBaru <- createNodeTree(data)
+        root <- dataBaru
+    else
+        if (info(root).ID >= info(dataBaru).ID) then
+            if (left(root!=NULL)) then
+                insertPegawai(left(root), data)
+            else
+                dataBaru <- createNodeTree(data)
+                left(root) <- dataBaru
+            endif
+        else
+            if (right(root)!=NULL) then
+                insertPegawai(right(root), data)
+            else
+                dataBaru <- createNodeTree(data)
+                right(root) <- dataBaru
+            endif
+        endif
+    endif
+endprocedure
+
+=================================================================
+
+procedure findNama(in root, adrNode, id: string, N: integer, in/out i, found boolean)
+    if (root != NULL and found == false) then
+        if (info(root).id == id) then
+            found <- true
+            output("Nama Pembeli dengan ID ", id, ": ", info(root).pembeli)
+        else
+            i <- i+1
+        endif
+        findNama(left(root), id, i, found)
+        findNama(right(root), id, i, found)
+    endif
+
+    if (found == false and i >= N) then
+        output("Not found")
+    endif
+
+endprocedure
+
+procedure findNama(in root, adrNode, id: string, N: integer, in/out i, found boolean) -> adrNode
+    if (root != NULL and found == false) then
+        if (info(root).id == id) then
+            found <- true
+            output("Nama Pembeli dengan ID ", id, ": ", info(root).pembeli)
+            return root
+        else
+            i <- i+1
+        endif
+        findNama(left(root), id, i, found)
+        findNama(right(root), id, i, found)
+    endif
+
+    if (found == false and i >= N) then
+        output("Not found")
+    endif
+
+    return NULL
+endfunction
+
+procedure deleteData(adrNode &root, adrNode P)
+Kamus:
+cari        : adrNode
+
+Algoritma:
+    if (root != NULL) then
+        if (info(P) < info(root)) then
+            deleteData(left(root), P)
+        else if (info(P) > info(root)) then
+            deleteData(right(root), P)
+        else
+            if (left(root) == NULL and right(root) == NULL)
+                root = NULL
+            else if (left(root) == NULL) then
+                root = right(root)
+            else if (right(root) == NULL) then
+                root = left(root)
+            else
+                cari = findNodeLeft(right(root))
+                info(root) = info(cari)
+                deleteData(right(root), cari)
+            endif
+endprocedure
