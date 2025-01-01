@@ -101,11 +101,11 @@ endprocedure
 
 =================================================================
 
-procedure findNama(in root, adrNode, id: string, N: integer, in/out i, found boolean)
+procedure findNama(in root: drNode, id: string, N: integer, in/out i, found boolean)
     if (root != NULL and found == false) then
         if (info(root).id == id) then
             found <- true
-            output("Nama Pembeli dengan ID ", id, ": ", info(root).pembeli)
+            output("Nama Pembeli dengan ID ", id ",: ", info(root).pembeli)
         else
             i <- i+1
         endif
@@ -119,11 +119,11 @@ procedure findNama(in root, adrNode, id: string, N: integer, in/out i, found boo
 
 endprocedure
 
-procedure findNama(in root, adrNode, id: string, N: integer, in/out i, found boolean) -> adrNode
+function findNama(in root: adrNode, id: string, N: integer, in/out i, found boolean) -> adrNode
     if (root != NULL and found == false) then
         if (info(root).id == id) then
             found <- true
-            output("Nama Pembeli dengan ID ", id, ": ", info(root).pembeli)
+            output("Nama Pembeli dengan ID ", id ",: ", info(root).pembeli)
             return root
         else
             i <- i+1
@@ -139,7 +139,7 @@ procedure findNama(in root, adrNode, id: string, N: integer, in/out i, found boo
     return NULL
 endfunction
 
-procedure deleteData(adrNode &root, adrNode P)
+procedure deleteData(root: adrNode, P: adrNode)
 Kamus:
 cari        : adrNode
 

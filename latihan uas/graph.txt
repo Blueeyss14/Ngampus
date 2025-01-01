@@ -15,7 +15,7 @@ Kamus:
 Algoritma:
     p <- new Edge
     id(p) <- id
-    Next() p <- NULL
+    Next(p) <- NULL
 
     return p
 endfunction
