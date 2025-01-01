@@ -1,0 +1,161 @@
+Type adrNode    : pointer to Node 
+Type Node       : < id : char,
+                    inDegree    : integer 
+                    firstCh     : adrEdge, 
+                    next        : adrNode >
+Type adrEdge    : pointer to Edge 
+Type Edge       : < id      : char
+                    Next    : adrEdge > 
+Type Graf       : < Start   : adrNode >
+
+function createEdge(id: char) -> adrEdge
+Kamus:
+    p: adrEdge
+
+Algoritma:
+    p <- new Edge
+    id(p) <- id
+    Next() p <- NULL
+
+    return p
+endfunction
+
+Procedure Connecting(In/Out G: Graf, In node1, node2: char)
+Kamus:
+    p: adrNode
+    newEdge: adrEdge
+
+Algoritma:
+    newEdge <- createEdge(node2)
+    p <- findNode(G, node1)
+    insertEdge(G,p, newEdge)
+
+    p <- findNode(G, node2)
+    inDegree(p) <- inDegree(p) + 1
+endprocedure
+
+procedure Connecting(in/out G:graf, in node1, node2: char)
+Kamus:
+    p: adrNode
+    newEdge: adrEdge
+
+Algoritma:
+    newEdge <- createEdge(node2)
+    p <- findNode(G, node1)
+    insertEdge(G,p, newEdge)
+
+     p <- findNode(G, node2)
+    insertEdge(G,p, newEdge)
+
+endprocedure
+
+procedure topSort(in/out G: Graf)
+Kamus:
+    del, p: adrNode
+    q: adrEdge
+
+Algoritma:
+    if (start(G) == NULL) then
+        output("siklus Graf")
+    else
+        del <- findZeroIn(G)
+        if (del != NULL) then
+            q <- first(del)
+
+            while(q!=NULL) do
+                p <- findNode(G, id(q))
+                inDegree(p) <- inDegree(p) - 1
+                q <- Next(q)
+            endwhile
+            deleteNode(G, del)
+            topSort(G)
+        else
+            output("siklus graf")
+        endif
+    endif
+endprocedure
+
+procedure Disconnecting(in/out G: Graf, in node1, node2: char)
+Kamus:
+    pNode1, pNode2 <- adrNode
+    qNode1, qNode2 <- adrEdge
+
+Algoritma:
+    pNode1 <- findNode(G, node1)
+    pNode2 <- findNode(G, node2)
+
+    qNode1 <- findEdge(G, pNode1, node2)
+    qNode2 <- findEdge(G, pNode2, node1)
+
+    if (qnode1 != NULL) then
+        inDegree(pNode2) <- inDegree(pNode2) - 1
+        deleteEdge(G, pNode1, qNode1)
+    endif
+
+    if (qnode2 != NULL) then
+        inDegree(pNode1) <- inDegree(pNode1) - 1
+        deleteEdge(G, pNode2, qNode2)
+    endif
+endprocedure
+
+procedure topologicalSort(in/out G: graf)
+Kamus:
+    del, p: adrNode
+    q: adrEdge
+Algoritma:
+    if (start(G) == NULL) then
+        output("siklus graf")
+    else
+        del <- findZeroIn(G)
+        if (del != NULL) then
+            q <- first(del)
+
+            while (q != NULL) do
+                p <- findNode(G, id(q))
+                inDegree(p) <- inDegree(p) - 1
+                q <- Next(q)
+            endwhile
+            deleteNode(G, del)
+
+            topologicalSort(G)
+        else
+            output("siklus graf")
+        endif
+endprocedure
+
+procedure proses(in/out G: Graf)
+Kamus:
+    del, p: adrNode
+    inDegree: integer
+    foundCycles: false
+
+Algoritma:
+    del <- NULL
+    if (Start(G) == NULL) then
+        output("Graf Kosong")
+    else
+        foundCycles <- false
+        while(Start(G)!=NULL or foundCycles != true) do
+            p <- Start(G)
+            output("inDegree Node:")
+
+            while(p!=NULL) do
+                inDegree <- inDegree1Node(G,P)
+                output(p.id, " ", inDegree)
+                if (inDegree == 0) then
+                    del <- p
+                endif
+                p <- Next(p)
+            endwhile
+
+            if (del != NULL) then
+                deleteNode(G, del)
+                output(del.id, "berhasil dihapus")
+                del <- NULL
+            else
+                foundCycles <- true
+                output("graf siklus")
+            endif
+        endwhile
+    endif
+endprocedure
