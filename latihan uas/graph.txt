@@ -44,6 +44,7 @@ Algoritma:
     p <- findNode(G, node1)
     insertEdge(G,p, newEdge)
 
+    newEdge <- createEdge(node1)
      p <- findNode(G, node2)
     insertEdge(G,p, newEdge)
 
