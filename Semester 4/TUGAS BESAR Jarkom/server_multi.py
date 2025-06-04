@@ -1,7 +1,6 @@
 import socket
 import threading
 
-
 def handle_client(conn):
     try:
         req = conn.recv(1024).decode()
@@ -34,8 +33,8 @@ def main():
         s.listen(5)
         print("Server listening on port 6789...")
         while True:
-            conn, addr = s.accept()
-            threading.Thread(target=handle_client, args=(conn, addr)).start()
+            conn, _ = s.accept()
+            threading.Thread(target=handle_client, args=(conn,)).start()
 
 if __name__ == "__main__":
     main()

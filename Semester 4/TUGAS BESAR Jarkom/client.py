@@ -3,7 +3,7 @@ import sys
 
 def main():
     if len(sys.argv) != 4:
-        print("Usage: python client.py server_host server_port filename")
+        print("python client.py, server_host, server_port, filename")
         sys.exit(1)
 
     server_host = sys.argv[1]
